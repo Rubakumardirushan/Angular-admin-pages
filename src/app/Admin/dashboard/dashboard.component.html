@@ -1,0 +1,81 @@
+<div class="container">
+  <h1 class="mt-5">Hello, {{username}}!</h1>
+  <button class="btn btn-danger mt-3" (click)="onlogout()">Logout</button>
+  <a class="btn btn-primary mt-3" routerLink="/addteam" routerLinkActive="active">Team Register</a>
+  <a class="btn btn-primary mt-3" routerLink="/addplayer" routerLinkActive="active">Player  Register</a>
+  <a class="btn btn-primary mt-3" routerLink="/addmatch" routerLinkActive="active">Match  Register</a>
+</div>
+
+<div class="container mt-5">
+  <div>
+    <h2>Team Names</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Team Name</th>
+        </tr>
+      </thead>
+      <tbody>
+
+       @for(teams of teamname ;track teams ;let i=$index) {
+          <tr><td>{{i+1}}</td>
+            <td>{{teams}}</td></tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h2>Player Information</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Player Name</th>
+          <th>Player Role</th>
+          <th>Player Team</th>
+          <th>Player Jersey</th>
+          <th>PLayer Points</th>
+        </tr>
+      </thead>
+      <tbody>
+          @for(playerinfo of players ; track playerinfo ;let i=$index){
+        <tr><td>{{i+1}}</td>
+          <td>{{playerinfo.Player_name}}</td>
+          <td>{{playerinfo.Player_role}}</td>
+          <td>{{playerinfo.Player_team}}</td>
+        <td>{{playerinfo.Player_jersey_number}}</td>
+        <td>{{playerinfo.Player_points}}</td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h2>Match Details</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Team A</th>
+          <th>Team B</th>
+          <th>Match Start Time</th>
+          <th>Match End Time</th>
+        </tr>
+      </thead>
+      <tbody>
+         @for(match of matches ; track match ;let i=$index){
+        <tr [ngClass]="{ 'bg-success': isPast(match.Match_end_time) ,'bg-danger':notisPast(match.Match_end_time)}"><td>{{i+1}}</td>
+          <td>{{match.TeamA}}</td>
+          <td>{{match.TeamB}}</td>
+          <td>{{match.Match_start_time}}</td>
+          <td>{{match.Match_end_time}}</td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+</div>

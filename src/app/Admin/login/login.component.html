@@ -1,0 +1,23 @@
+<div class="login-container">
+  <h2>Admin Login</h2>
+  <form [formGroup]="loginform">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" placeholder="Enter username "  formControlName="username">
+@if(loginform.get('username')?.touched && loginform.get('username')?.invalid){
+  <span style="color: red;"> <i>username required</i></span>
+}
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter password"  formControlName="password">
+      @if(loginform.get('password')?.touched && loginform.get('password')?.invalid){
+        <span style="color: red;"> <i>password required</i></span>
+      }
+
+    </div>
+    <button type="submit" class="btn btn-primary w-100" (click)="submit()" [disabled]="loginform.invalid">Login</button>
+    <p><i style="color: red;"> {{errormessage}}</i></p>
+  </form>
+</div>

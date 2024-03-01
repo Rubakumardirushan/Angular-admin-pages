@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <h1>Match Registration</h1>
+  <form id="matchForm" [formGroup]="Mathcform" (ngSubmit)="creatematch()">
+      <div class="mb-3">
+          <label for="teamA" class="form-label">Team A</label>
+          <select class="form-select" id="teamA" name="teamA" formControlName="TeamA" >
+            <option value="" disabled selected>Select Team A</option>
+              @for(teamA of teamname ;track teamA){
+                <option value="{{teamA}}">{{teamA}}</option>
+              }
+          </select>
+
+      </div>
+      <div class="mb-3">
+          <label for="teamB" class="form-label">Team B</label>
+          <select class="form-select" id="teamB" name="teamB" formControlName="TeamB">
+            <option value="" disabled selected>Select Team B</option>
+              @for(teamB of teamname ;track teamB){
+                <option value="{{teamB}}">{{teamB}}</option>
+              }
+
+          </select>
+      </div>
+      <div class="mb-3">
+          <label for="matchStartTime" class="form-label">Match Start Time</label>
+          <input type="datetime-local" class="form-control" id="matchStartTime" name="matchStartTime" formControlName="startdate">
+      </div>
+      <div class="mb-3">
+          <label for="matchEndTime" class="form-label">Match End Time</label>
+          <input type="datetime-local" class="form-control" id="matchEndTime" name="matchEndTime" formControlName="enddate">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="Mathcform.invalid">Create Match</button>
+  </form>
+  <div class="">
+      <span><i style="color: red;">{{massages}}</i></span>
+  </div>
+</div>
